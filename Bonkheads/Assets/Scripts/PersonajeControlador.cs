@@ -7,6 +7,8 @@ public class PersonajeControlador : MonoBehaviour
     public float Speed;
     public float MaxSpeed;
 
+    public bool TocandoPiso;
+
     public float FuerzaSalto;
     private bool Saltar;
  
@@ -24,9 +26,10 @@ public class PersonajeControlador : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           
+            if (TocandoPiso)
+            {
                 Saltar = true;
-            
+            }
         }
     }
 
