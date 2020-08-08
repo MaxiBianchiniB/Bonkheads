@@ -38,6 +38,10 @@ public class PersonajeControlador : MonoBehaviour
         Vector3 fixedVelocity = Personaje.velocity;
         fixedVelocity.x *= 0.75f;
 
+        if (TocandoPiso)
+        {
+            Personaje.velocity = fixedVelocity;
+        }
 
         float h = Input.GetAxis("Horizontal");
         if (!movimiento) h = 0;
@@ -62,5 +66,9 @@ public class PersonajeControlador : MonoBehaviour
             Personaje.AddForce(Vector2.up * FuerzaSalto, ForceMode2D.Impulse);
             Saltar = false;
         }
+    }
+    void OnBecameInvisible()
+    {
+        transform.position = new Vector3(-7, 0, 0);
     }
 }
