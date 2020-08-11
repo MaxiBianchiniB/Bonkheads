@@ -20,12 +20,24 @@ public class ComprobarSuelo : MonoBehaviour
         {
             Jugador.TocandoPiso = true;
         }
+
+        if (collision.gameObject.tag == "Plataforma Movil")
+        {
+            Jugador.transform.parent = collision.transform;
+            Jugador.TocandoPiso = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Plataforma")
         {
+            Jugador.TocandoPiso = false;
+        }
+
+        if (collision.gameObject.tag == "Plataforma Movil")
+        {
+            Jugador.transform.parent = null;
             Jugador.TocandoPiso = false;
         }
     }
