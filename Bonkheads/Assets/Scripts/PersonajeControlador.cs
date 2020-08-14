@@ -8,10 +8,12 @@ public class PersonajeControlador : MonoBehaviour
     public float MaxSpeed;
 
     public bool TocandoPiso;
+    public bool TocandoPared;
 
     public float FuerzaSalto;
     private bool Saltar;
- 
+    public bool DobleSaltar;
+
     private bool movimiento = true;
 
     private Rigidbody2D Personaje;
@@ -26,9 +28,16 @@ public class PersonajeControlador : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (TocandoPiso)
+            if (TocandoPiso || TocandoPared)
             {
                 Saltar = true;
+                DobleSaltar = true;
+
+            }
+            else if (DobleSaltar)
+            {
+                Saltar = true;
+                DobleSaltar = false;
             }
         }
     }
@@ -70,5 +79,21 @@ public class PersonajeControlador : MonoBehaviour
     void OnBecameInvisible()
     {
         transform.position = new Vector3(-7, 0, 0);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Pared")
+        {
+            TocandoPared = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Pared")
+        {
+            TocandoPared = false;
+        }
     }
 }
