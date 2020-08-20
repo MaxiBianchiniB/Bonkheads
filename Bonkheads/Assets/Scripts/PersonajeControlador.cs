@@ -14,6 +14,11 @@ public class PersonajeControlador : MonoBehaviour
     private bool Saltar;
     public bool DobleSaltar;
 
+    public GameObject Pies;
+    private bool Slash;
+
+
+
     private bool movimiento = true;
 
     private Rigidbody2D Personaje;
@@ -40,10 +45,16 @@ public class PersonajeControlador : MonoBehaviour
                 DobleSaltar = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Slash = true;
+        }
     }
 
     private void FixedUpdate()
     {
+        ComprobarSuelo();
+
         Vector3 fixedVelocity = Personaje.velocity;
         fixedVelocity.x *= 0.75f;
 
@@ -75,6 +86,13 @@ public class PersonajeControlador : MonoBehaviour
             Personaje.AddForce(Vector2.up * FuerzaSalto, ForceMode2D.Impulse);
             Saltar = false;
         }
+
+        if (Slash)
+        {
+            Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
+            Personaje.AddForce(Vector2.right * 80 * h, ForceMode2D.Impulse);
+            Slash = false;
+        }
     }
     void OnBecameInvisible()
     {
@@ -94,6 +112,32 @@ public class PersonajeControlador : MonoBehaviour
         if (collision.gameObject.tag == "Pared")
         {
             TocandoPared = false;
+        }
+    }
+
+    void ComprobarSuelo()
+    {
+        RaycastHit2D colision = Physics2D.Raycast(new Vector2(Pies.transform.position.x, Pies.transform.position.y), new Vector2(0, -1), 0.05f);
+        if(colision != null && colision.collider != null)
+        {
+            //Debug.Log(colision.collider.name);
+            if(colision.transform.tag == "Plataforma")
+            {
+                TocandoPiso = true;
+            }
+
+            if (colision.transform.tag == "Plataforma Movil")
+            {
+                Personaje.velocity = new Vector3(0f, 0f, 0f);
+                transform.parent = colision.transform;
+                TocandoPiso = true;
+            }
+
+        }
+        else
+        {
+            TocandoPiso = false;
+            transform.parent = null;
         }
     }
 }
