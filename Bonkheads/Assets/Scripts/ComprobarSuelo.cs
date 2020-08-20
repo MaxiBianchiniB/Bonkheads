@@ -8,7 +8,7 @@ public class ComprobarSuelo : MonoBehaviour
     private Rigidbody2D Cuerpo;
 
     // Start is called before the first frame update
-    void Start()
+   /* void Start()
     {
         Jugador = GetComponentInParent<PersonajeControlador>();
         Cuerpo = GetComponentInParent<Rigidbody2D>();
@@ -50,5 +50,5 @@ public class ComprobarSuelo : MonoBehaviour
             Jugador.transform.parent = null;
             Jugador.TocandoPiso = false;
         }
-    }
+    }*/
 }
