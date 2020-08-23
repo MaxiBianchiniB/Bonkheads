@@ -89,7 +89,7 @@ public class PersonajeControlador : MonoBehaviour
 
         if (Slash)
         {
-            Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
+           // Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
             Personaje.AddForce(Vector2.right * 80 * h, ForceMode2D.Impulse);
             Slash = false;
         }
