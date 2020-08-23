@@ -50,9 +50,7 @@ public class BalaControlador : MonoBehaviour
     {
         if (collision.gameObject.tag == "Plataforma")
         {
-
             Destroy(gameObject);
-
         }
 
         if (collision.gameObject.tag == "Plataforma Movil")
@@ -60,11 +58,9 @@ public class BalaControlador : MonoBehaviour
             Destroy(gameObject);
         }
 
-
         if (collision.gameObject.tag == "Pared")
         {
             Destroy(gameObject);
-
         }
     }
 
