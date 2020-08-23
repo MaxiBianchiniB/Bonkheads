@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ComprobarSuelo : MonoBehaviour
 {
-    private PersonajeControlador Jugador;
-    private Rigidbody2D Cuerpo;
+    //private PersonajeControlador Jugador;
+    //private Rigidbody2D Cuerpo;
 
     // Start is called before the first frame update
    /* void Start()
