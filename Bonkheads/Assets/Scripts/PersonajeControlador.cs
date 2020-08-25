@@ -142,11 +142,6 @@ public class PersonajeControlador : MonoBehaviour
         }
     }
 
-   /* public void EnemyJump()
-    {
-        Saltar = true;
-    }*/
-
     public void EnemyKnockBack(float enemyPosX)
     {
         Saltar = true;
