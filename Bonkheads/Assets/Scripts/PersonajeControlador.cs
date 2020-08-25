@@ -17,7 +17,7 @@ public class PersonajeControlador : MonoBehaviour
     public GameObject Pies;
     private bool Slash;
 
-
+    private SpriteRenderer spr;
 
     private bool movimiento = true;
 
@@ -26,6 +26,7 @@ public class PersonajeControlador : MonoBehaviour
     void Start()
     {
         Personaje = GetComponent<Rigidbody2D>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -139,5 +140,30 @@ public class PersonajeControlador : MonoBehaviour
             TocandoPiso = false;
             transform.parent = null;
         }
+    }
+
+   /* public void EnemyJump()
+    {
+        Saltar = true;
+    }*/
+
+    public void EnemyKnockBack(float enemyPosX)
+    {
+        Saltar = true;
+
+        float lado = Mathf.Sign(enemyPosX - transform.position.x);
+        Personaje.AddForce(Vector2.left * lado * FuerzaSalto, ForceMode2D.Impulse);
+
+        movimiento = false;
+        Invoke("ActivarMovimiento", 0.7f);
+
+        Color color = new Color(164 / 255f, 69 / 255f, 69 / 255f);
+        spr.color = color;
+    }
+
+    void ActivarMovimiento()
+    {
+        movimiento = true;
+        spr.color = Color.white;
     }
 }
