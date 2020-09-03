@@ -14,24 +14,30 @@ public class PersonajeControlador : MonoBehaviour
     private bool Saltar;
     public bool DobleSaltar;
 
-    public GameObject Pies;
     private bool Slash;
-
-    private SpriteRenderer spr;
 
     private bool movimiento = true;
 
-    private Rigidbody2D Personaje;
+    private SpriteRenderer spr;
+    private Rigidbody2D rb2d;
+    private Animator anim;
+
+    public GameObject Pies;
+
     // Start is called before the first frame update
     void Start()
     {
-        Personaje = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
+        anim.SetBool("Grounded", TocandoPiso);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (TocandoPiso || TocandoPared)
@@ -56,21 +62,21 @@ public class PersonajeControlador : MonoBehaviour
     {
         ComprobarSuelo();
 
-        Vector3 fixedVelocity = Personaje.velocity;
+        Vector3 fixedVelocity = rb2d.velocity;
         fixedVelocity.x *= 0.75f;
 
         if (TocandoPiso)
         {
-            Personaje.velocity = fixedVelocity;
+            rb2d.velocity = fixedVelocity;
         }
 
         float h = Input.GetAxis("Horizontal");
         if (!movimiento) h = 0;
 
-        Personaje.AddForce(Vector2.right * Speed * h);
+        rb2d.AddForce(Vector2.right * Speed * h);
 
-        float LimitSpeed = Mathf.Clamp(Personaje.velocity.x, -MaxSpeed, MaxSpeed);
-        Personaje.velocity = new Vector2(LimitSpeed, Personaje.velocity.y);
+        float LimitSpeed = Mathf.Clamp(rb2d.velocity.x, -MaxSpeed, MaxSpeed);
+        rb2d.velocity = new Vector2(LimitSpeed, rb2d.velocity.y);
 
         if (h > 0.1f)
         {
@@ -83,15 +89,15 @@ public class PersonajeControlador : MonoBehaviour
 
         if (Saltar)
         {
-            Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
-            Personaje.AddForce(Vector2.up * FuerzaSalto, ForceMode2D.Impulse);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+            rb2d.AddForce(Vector2.up * FuerzaSalto, ForceMode2D.Impulse);
             Saltar = false;
         }
 
         if (Slash)
         {
-           // Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
-            Personaje.AddForce(Vector2.right * 80 * h, ForceMode2D.Impulse);
+            // Personaje.velocity = new Vector2(Personaje.velocity.x, 0);
+            rb2d.AddForce(Vector2.right * 80 * h, ForceMode2D.Impulse);
             Slash = false;
         }
     }
@@ -129,7 +135,7 @@ public class PersonajeControlador : MonoBehaviour
 
             if (colision.transform.tag == "Plataforma Movil")
             {
-                Personaje.velocity = new Vector3(0f, 0f, 0f);
+                rb2d.velocity = new Vector3(0f, 0f, 0f);
                 transform.parent = colision.transform;
                 TocandoPiso = true;
             }
@@ -147,7 +153,7 @@ public class PersonajeControlador : MonoBehaviour
         Saltar = true;
 
         float lado = Mathf.Sign(enemyPosX - transform.position.x);
-        Personaje.AddForce(Vector2.left * lado * FuerzaSalto, ForceMode2D.Impulse);
+        rb2d.AddForce(Vector2.left * lado * FuerzaSalto, ForceMode2D.Impulse);
 
         movimiento = false;
         Invoke("ActivarMovimiento", 0.7f);
