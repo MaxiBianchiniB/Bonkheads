@@ -24,6 +24,15 @@ public class PersonajeControlador : MonoBehaviour
 
     public GameObject Pies;
 
+
+    public Transform puntoinstancia;
+    public GameObject Bala;
+
+    private float tiempodisparo;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +43,27 @@ public class PersonajeControlador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
         anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
         anim.SetBool("Grounded", TocandoPiso);
+
+
+
+
+
+        tiempodisparo += Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.S) && tiempodisparo >= 1f)
+        {
+            Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+            tiempodisparo = 0f;
+        }
+
+
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
