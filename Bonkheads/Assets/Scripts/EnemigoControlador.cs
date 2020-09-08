@@ -12,6 +12,20 @@ public class EnemigoControlador : MonoBehaviour
 
     private GameObject player;
 
+
+
+    public Transform puntoinstancia;
+    public GameObject Bala;
+
+    private float tiempodisparo;
+
+
+
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +35,16 @@ public class EnemigoControlador : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        tiempodisparo += Time.deltaTime;
+    }
+
+
+
+
+
+
     void FixedUpdate()
     {
         if (NumeroEnemigo == 1)
@@ -36,27 +60,55 @@ public class EnemigoControlador : MonoBehaviour
                 Enemigo.velocity = new Vector2(speed, Enemigo.velocity.y);
             }
 
-            /* if (speed > 0f)
-               {
-                   transform.localScale = new Vector3(1f, 1f, 1f);
-               }
-               if (speed < 0f)
-               {
-                   transform.localScale = new Vector3(-1f, 1f, 1f);
-               }*/
+             if (speed > 0f)
+             {
+                 transform.localScale = new Vector3(1f, 1f, 1f);
+             }
+
+             if (speed < 0f)
+             {
+                 transform.localScale = new Vector3(-1f, 1f, 1f);
+             }
 
         }
-       /* else if (NumeroEnemigo == 2)
+        else if (NumeroEnemigo == 2)
         {
-            if (player.transform.localScale.x > 3)
+            if (player.transform.position.x > transform.position.x)
             {
-                transform.localScale = new Vector3(1f, 1f, 1f);  // para flipear la bala
+                transform.localScale = new Vector3(1f, 1f, 1f);
             }
             else
             {
-                transform.localScale = new Vector3(-1f, 1f, 1f); // para flipear la bala
+                transform.localScale = new Vector3(-1f, 1f, 1f);
             }
-        }*/
+
+
+
+
+
+
+
+
+
+            
+
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5 && tiempodisparo >= 0.5f)
+            {
+                Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                tiempodisparo = 0f;
+            }
+
+
+
+            // if(player.)
+            /* {
+                 transform.localScale = new Vector3(1f, 1f, 1f);  // para flipear la bala
+             }*/
+            /* else
+             {
+                 transform.localScale = new Vector3(-1f, 1f, 1f); // para flipear la bala
+             }*/
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
