@@ -11,7 +11,7 @@ public class BalaControlador : MonoBehaviour
 
     //public GameObject Player;
     private GameObject player;
-    private Transform playertransform;
+   // private Transform playertransform;
 
     private float TiempoMuerte = 3f;
 
@@ -19,7 +19,7 @@ public class BalaControlador : MonoBehaviour
     {
         Bala = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playertransform = player.transform;
+     //   playertransform = player.transform;
     }
 
 
