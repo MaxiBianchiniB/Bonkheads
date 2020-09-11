@@ -7,18 +7,18 @@ public class BalaControlador : MonoBehaviour
     public float MaxSpeed;
     public float speed;
 
-    private Rigidbody2D Bala;
+    //private Rigidbody2D Bala;
 
     //public GameObject Player;
-    private GameObject player;
+    //private GameObject Enemigo;
    // private Transform playertransform;
 
     private float TiempoMuerte = 3f;
 
     private void Awake()
     {
-        Bala = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        //Bala = GetComponent<Rigidbody2D>();
+        //Enemigo = GameObject.FindGameObjectWithLayer("Enemigos");
      //   playertransform = player.transform;
     }
 
@@ -26,7 +26,7 @@ public class BalaControlador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (player.transform.localScale.x > 0)
+       /* if (Enemigo.transform.localScale.x > 0)
         {
             Bala.velocity = new Vector2(speed, Bala.position.y);
            // transform.localScale = new Vector3(1f, 1f, 1f);   //para flipear la bala
@@ -35,7 +35,7 @@ public class BalaControlador : MonoBehaviour
         {
             Bala.velocity = new Vector2(-speed, Bala.position.y);
            // transform.localScale = new Vector3(-1f, 1f, 1f); // para flipear la bala
-        }
+        }*/
 
     }
 
