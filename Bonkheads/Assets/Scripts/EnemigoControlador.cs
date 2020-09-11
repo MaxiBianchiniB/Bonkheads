@@ -12,7 +12,7 @@ public class EnemigoControlador : MonoBehaviour
 
     private GameObject player;
 
-
+    private GameObject Balas;
 
     public Transform puntoinstancia;
     public GameObject Bala;
@@ -20,7 +20,7 @@ public class EnemigoControlador : MonoBehaviour
     private float tiempodisparo;
 
 
-
+    private float h;
 
 
 
@@ -76,10 +76,13 @@ public class EnemigoControlador : MonoBehaviour
             if (player.transform.position.x > transform.position.x)
             {
                 transform.localScale = new Vector3(1f, 1f, 1f);
+                h = 1;
             }
             else
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
+
+                h = -1;
             }
 
 
@@ -90,11 +93,13 @@ public class EnemigoControlador : MonoBehaviour
 
 
 
-            
+           // Debug.Log(Mathf.Abs(player.transform.position.x - transform.position.x) < 5);
 
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5 && tiempodisparo >= 0.5f)
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f/* && player.transform.position.x - transform.position.x > -5f  */ && tiempodisparo >= 0.5f)
             {
-                Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                Balas = Instantiate(Bala, puntoinstancia.position,Quaternion.identity);
+                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(h * 3 , Balas.GetComponent<Rigidbody2D>().position.y);
+                // Instantiate(Bala,)
                 tiempodisparo = 0f;
             }
 
@@ -122,7 +127,7 @@ public class EnemigoControlador : MonoBehaviour
         if (collision.gameObject.tag == "Bala")
         {
             collision.SendMessage("EliminarBala");
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
     }
 }
