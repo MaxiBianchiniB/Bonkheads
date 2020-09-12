@@ -62,6 +62,12 @@ public class BalaControlador : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+       /*if (collision.gameObject.tag == "Player")
+        {
+          //  Debug.Log("player");
+            Destroy(gameObject);
+        }*/
     }
 
 
