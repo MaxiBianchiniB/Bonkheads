@@ -21,7 +21,7 @@ public class EnemigoControlador : MonoBehaviour
 
 
     private float h;
-
+    public float Posicion;
 
 
 
@@ -32,6 +32,9 @@ public class EnemigoControlador : MonoBehaviour
         Enemigo = GetComponent<Rigidbody2D>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+
+        Posicion = Enemigo.transform.position.x;
     }
 
     // Update is called once per frame
@@ -95,7 +98,7 @@ public class EnemigoControlador : MonoBehaviour
 
            // Debug.Log(Mathf.Abs(player.transform.position.x - transform.position.x) < 5);
 
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f/* && player.transform.position.x - transform.position.x > -5f  */ && tiempodisparo >= 0.5f)
+            if (Mathf.Abs(player.transform.position.x - transform.position.x)  < 5f && tiempodisparo >= 0.5f)
             {
                 Balas = Instantiate(Bala, puntoinstancia.position,Quaternion.identity);
                 Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(h * 3 , Balas.GetComponent<Rigidbody2D>().position.y);
@@ -105,6 +108,7 @@ public class EnemigoControlador : MonoBehaviour
 
 
 
+           // Balas.GetComponent<Rigidbody2D>().collisionDetectionMode 
             // if(player.)
             /* {
                  transform.localScale = new Vector3(1f, 1f, 1f);  // para flipear la bala
@@ -114,8 +118,35 @@ public class EnemigoControlador : MonoBehaviour
                  transform.localScale = new Vector3(-1f, 1f, 1f); // para flipear la bala
              }*/
         }
-    }
+        else if(NumeroEnemigo == 3)
+        {
+           
 
+            Enemigo.AddForce(Vector2.right * speed);
+
+            float LimitSpeed = Mathf.Clamp(Enemigo.velocity.x, -MaxSpeed, MaxSpeed);
+            Enemigo.velocity = new Vector2(LimitSpeed, Enemigo.velocity.y);
+            Enemigo.velocity = new Vector2(speed, Enemigo.velocity.y);
+
+            if (Enemigo.position.x > Posicion + 5f || Enemigo.position.x < Posicion - 5f)
+            {
+
+               // Debug.Log("Cambio de lado");
+                speed = -speed;
+                Enemigo.velocity = new Vector2(speed, Enemigo.velocity.y);
+            }
+
+            if (speed > 0f)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+
+            if (speed < 0f)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+    }
     void OnTriggerEnter2D(Collider2D collision)
     { 
         if (collision.gameObject.tag == "Player")
@@ -127,7 +158,8 @@ public class EnemigoControlador : MonoBehaviour
         if (collision.gameObject.tag == "Bala")
         {
             collision.SendMessage("EliminarBala");
-           // Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
+
 }
