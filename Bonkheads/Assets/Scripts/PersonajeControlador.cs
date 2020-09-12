@@ -31,7 +31,8 @@ public class PersonajeControlador : MonoBehaviour
     private float tiempodisparo;
 
 
-
+    private GameObject Balas;
+    float Direccion;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,20 @@ public class PersonajeControlador : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S) && tiempodisparo >= 1f)
         {
-            Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+           // Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+
+
+
+            /////////////
+
+
+            Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+            Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 3, Balas.GetComponent<Rigidbody2D>().position.y);
+
+
+            //////////
+
+
             tiempodisparo = 0f;
         }
 
@@ -108,10 +122,12 @@ public class PersonajeControlador : MonoBehaviour
         if (h > 0.1f)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
+            Direccion = 1;
         }
         if (h < -0.1f)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
+            Direccion = -1;
         }
 
         if (Saltar)
@@ -133,6 +149,58 @@ public class PersonajeControlador : MonoBehaviour
         transform.position = new Vector3(-7, 0, 0);
     }
 
+
+
+    /* void OnCollisionEnter2D(Collider2D collision)
+     {
+         /* if (collision.gameObject.tag == "Player")
+          {
+              // Debug.Log("Player");
+              collision.SendMessage("EnemyKnockBack", transform.position.x);
+          }
+
+         if (collision.gameObject.tag == "Bala")
+         {
+             collision.SendMessage("EliminarBala");
+             Destroy(gameObject);
+         }
+     }*/
+
+
+
+
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        
+
+        if (collision.gameObject.tag == "Bala")
+        {
+            Debug.Log("muerto");
+            //collision.SendMessage("EliminarBala");
+            Destroy(gameObject);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Pared")
@@ -148,6 +216,7 @@ public class PersonajeControlador : MonoBehaviour
             TocandoPared = false;
         }
     }
+
 
     void ComprobarSuelo()
     {
