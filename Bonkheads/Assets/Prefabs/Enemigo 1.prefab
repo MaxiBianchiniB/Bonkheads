@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5362994773923283618}
   - component: {fileID: 2478342720546789457}
   m_Layer: 0
-  m_Name: PlayerCollider
+  m_Name: Player/Bala Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,3 +205,6 @@ MonoBehaviour:
   MaxSpeed: 1
   speed: 1
   NumeroEnemigo: 1
+  puntoinstancia: {fileID: 0}
+  Bala: {fileID: 0}
+  Posicion: 0

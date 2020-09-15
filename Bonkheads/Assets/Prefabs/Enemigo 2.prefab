@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6714483913638066234}
   - component: {fileID: 3830130392835039945}
   m_Layer: 0
-  m_Name: PlayerCollider
+  m_Name: Player/Bala Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9222294319486364570}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -238,3 +238,4 @@ MonoBehaviour:
   NumeroEnemigo: 2
   puntoinstancia: {fileID: 206620094191381676}
   Bala: {fileID: 1192585766144804598, guid: 940713d06fcd9be498b9fa370018cd44, type: 3}
+  Posicion: 0

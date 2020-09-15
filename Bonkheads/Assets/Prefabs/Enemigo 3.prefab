@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7271853378321006110}
   - component: {fileID: 5747900953835511422}
   m_Layer: 0
-  m_Name: PlayerCollider
+  m_Name: Player/Bala Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
