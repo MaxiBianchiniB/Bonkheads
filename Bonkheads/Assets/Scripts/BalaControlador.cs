@@ -7,35 +7,11 @@ public class BalaControlador : MonoBehaviour
     public float MaxSpeed;
     public float speed;
 
-    //private Rigidbody2D Bala;
-
-    //public GameObject Player;
-    //private GameObject Enemigo;
-   // private Transform playertransform;
-
     private float TiempoMuerte = 3f;
-
-    private void Awake()
-    {
-        //Bala = GetComponent<Rigidbody2D>();
-        //Enemigo = GameObject.FindGameObjectWithLayer("Enemigos");
-     //   playertransform = player.transform;
-    }
-
 
     // Start is called before the first frame update
     void Start()
     {
-       /* if (Enemigo.transform.localScale.x > 0)
-        {
-            Bala.velocity = new Vector2(speed, Bala.position.y);
-           // transform.localScale = new Vector3(1f, 1f, 1f);   //para flipear la bala
-        }
-        else
-        {
-            Bala.velocity = new Vector2(-speed, Bala.position.y);
-           // transform.localScale = new Vector3(-1f, 1f, 1f); // para flipear la bala
-        }*/
 
     }
 
@@ -44,7 +20,6 @@ public class BalaControlador : MonoBehaviour
     {
         Destroy(gameObject, TiempoMuerte);
     }
-
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -62,14 +37,7 @@ public class BalaControlador : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-       /*if (collision.gameObject.tag == "Player")
-        {
-          //  Debug.Log("player");
-            Destroy(gameObject);
-        }*/
     }
-
 
     public void EliminarBala()
     {
