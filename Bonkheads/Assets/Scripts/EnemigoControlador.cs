@@ -41,7 +41,7 @@ public class EnemigoControlador : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (NumeroEnemigo == 1)
+        if (NumeroEnemigo == 1)///////////////////////////
         {
             Enemigo.AddForce(Vector2.right * speed);
 
@@ -112,12 +112,17 @@ public class EnemigoControlador : MonoBehaviour
             }
 
 
-
+            Vector2 direccion = player.transform.position - transform.position;
 
             if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f && tiempodisparo >= 0.5f)
+
+
             {
                 Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * 3, Balas.GetComponent<Rigidbody2D>().position.y);
+               Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * 3, Balas.GetComponent<Rigidbody2D>().position.y);/// pasarlo a la bala
+               // Balas.GetComponent<Rigidbody2D>().d
+
+
                 tiempodisparo = 0f;
             }
 
