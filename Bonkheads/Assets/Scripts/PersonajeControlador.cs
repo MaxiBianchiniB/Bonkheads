@@ -36,6 +36,9 @@ public class PersonajeControlador : MonoBehaviour
     private GameObject Balas;
     float Direccion;
 
+
+    public Vector3 PosReinicio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,8 @@ public class PersonajeControlador : MonoBehaviour
       //  level = GetCompon
 
         Vida = 5;
+
+        Direccion = 1;
     }
 
     // Update is called once per frame
@@ -86,7 +91,7 @@ public class PersonajeControlador : MonoBehaviour
 
 
 
-        if (Vida == 0)
+        if (Vida <= 0)
         {
             Destroy(gameObject);
             Application.LoadLevel(0);
@@ -140,7 +145,7 @@ public class PersonajeControlador : MonoBehaviour
     }
     void OnBecameInvisible()
     {
-        transform.position = new Vector3(-7, 0, 0);
+        transform.position = PosReinicio;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -156,6 +161,8 @@ public class PersonajeControlador : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemigo")
         {
+
+            Debug.Log("contacto enemigo;");
             EnemyKnockBack(collision.transform.position.x);
 
             Vida--;
