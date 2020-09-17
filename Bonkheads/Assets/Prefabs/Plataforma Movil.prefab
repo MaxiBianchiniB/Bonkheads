@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1bcdf871c99f544bb1f9152259381f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inicio: {fileID: 0}
-  destino: {fileID: 0}
+  inicio: {fileID: 7751502825280436554}
+  destino: {fileID: 2083454313207116160}
 --- !u!114 &7437735719154889425
 MonoBehaviour:
   m_ObjectHideFlags: 0
