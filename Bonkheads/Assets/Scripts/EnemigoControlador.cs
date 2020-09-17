@@ -112,11 +112,9 @@ public class EnemigoControlador : MonoBehaviour
             }
 
 
-            Vector2 direccion = player.transform.position - transform.position;
+           // Vector2 direccion = player.transform.position - transform.position;
 
             if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f && tiempodisparo >= 0.5f)
-
-
             {
                 Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * 3, Balas.GetComponent<Rigidbody2D>().position.y);/// pasarlo a la bala
@@ -125,13 +123,6 @@ public class EnemigoControlador : MonoBehaviour
 
                 tiempodisparo = 0f;
             }
-
-
-
-
-
-
-
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
