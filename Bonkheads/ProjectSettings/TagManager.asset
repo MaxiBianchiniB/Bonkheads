@@ -9,6 +9,7 @@ TagManager:
   - Pared
   - BalaEnemigo
   - BalaPlayer
+  - Enemigo
   layers:
   - Default
   - TransparentFX
