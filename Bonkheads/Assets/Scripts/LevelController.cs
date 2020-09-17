@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
-{ 
+{
+    string LevelName;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        LevelName = Application.loadedLevelName;
     }
 
     // Update is called once per frame
@@ -22,7 +24,16 @@ public class LevelController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("Level 2");
+            Debug.Log("Hizo contacto");
+            if (LevelName == "Level 1")
+            {
+                Debug.Log("Este es el level 1");
+                SceneManager.LoadScene("Level 2");
+            }
+            else if (LevelName == "Level 2")
+            {
+                SceneManager.LoadScene("Menu");////SEGUIR AGREGANDO SEGUN LA CANTIDAD DE NIVELES
+            }
         }
     }
  
