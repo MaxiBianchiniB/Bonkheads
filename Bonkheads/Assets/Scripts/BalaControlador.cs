@@ -8,11 +8,12 @@ public class BalaControlador : MonoBehaviour
     public float speed;
 
     private float TiempoMuerte = 3f;
+   // private Rigidbody2D rgb;
 
     // Start is called before the first frame update
     void Start()
     {
-
+       // rgb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -21,6 +22,10 @@ public class BalaControlador : MonoBehaviour
         Destroy(gameObject, TiempoMuerte);
     }
 
+    void fixedUpdate()
+    {
+     //   rgb.velocity = new Vector2(speed * 3, rgb.position.y);
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Plataforma")
