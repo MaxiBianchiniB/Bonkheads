@@ -18,6 +18,7 @@ public class EnemigoControlador : MonoBehaviour
     public GameObject Bala;
 
     private float tiempodisparo;
+   // public float DisparoTiempo; cambiarlo para que se pueda poner desde el engine
 
     private float h;
     public float Posicion;
@@ -54,7 +55,18 @@ public class EnemigoControlador : MonoBehaviour
                 Enemigo.velocity = new Vector2(speed, Enemigo.velocity.y);
             }
 
-             if (speed > 0f)
+
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f && tiempodisparo >= 1f)
+            {
+                Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * 3, 0f);
+
+
+                tiempodisparo = 0f;
+            }
+
+
+            if (speed > 0f)
              {
                  transform.localScale = new Vector3(1f, 1f, 1f);
              }
@@ -78,12 +90,12 @@ public class EnemigoControlador : MonoBehaviour
 
                 h = -1;
             }
+            Vector2 direccion = player.transform.position - transform.position;
 
-
-            if (Mathf.Abs(player.transform.position.x - transform.position.x)  < 5f && tiempodisparo >= 0.5f)
+            if (Mathf.Abs(player.transform.position.x - transform.position.x)  < 5f && tiempodisparo >= 0.9f)
             {
                 Balas = Instantiate(Bala, puntoinstancia.position,Quaternion.identity);
-                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(h * 3 , Balas.GetComponent<Rigidbody2D>().position.y);
+                Balas.GetComponent<Rigidbody2D>().velocity = direccion;
                 tiempodisparo = 0f;
             }
         }
@@ -112,12 +124,12 @@ public class EnemigoControlador : MonoBehaviour
             }
 
 
-           // Vector2 direccion = player.transform.position - transform.position;
+           Vector2 direccion = player.transform.position - transform.position;
 
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f && tiempodisparo >= 0.5f)
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 5f && tiempodisparo >= 1f)
             {
                 Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-               Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * 3, Balas.GetComponent<Rigidbody2D>().position.y);/// pasarlo a la bala
+                Balas.GetComponent<Rigidbody2D>().velocity = direccion;//new Vector2(speed * 3, Balas.GetComponent<Rigidbody2D>().position.y);/// pasarlo a la bala
                // Balas.GetComponent<Rigidbody2D>().d
 
 
