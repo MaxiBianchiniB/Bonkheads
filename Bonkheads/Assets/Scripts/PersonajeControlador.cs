@@ -61,10 +61,39 @@ public class PersonajeControlador : MonoBehaviour
 
         tiempodisparo += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.S) && tiempodisparo >= 1f)
+        if (Input.GetKey(KeyCode.S) && tiempodisparo >= 0.5f)
         {
-            Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-            Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 3, Balas.GetComponent<Rigidbody2D>().position.y);
+
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+               /* if (Input.GetKey(KeyCode.A))
+                {
+                    Debug.Log("IZquierda");
+                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, 3f); ;
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    Debug.Log("derecha");
+                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(3f, 3f); ;
+                }
+                else
+                {*/
+                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 3f); ;
+                //}
+                    
+            }
+            else
+            {
+                Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 3, 0f);
+            }
+            
+            
+            
+            
 
             tiempodisparo = 0f;
         }
@@ -87,9 +116,6 @@ public class PersonajeControlador : MonoBehaviour
         {
             Slash = true;
         }
-
-
-
 
         if (Vida <= 0)
         {
