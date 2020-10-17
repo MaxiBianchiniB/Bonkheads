@@ -61,7 +61,7 @@ public class PersonajeControlador : MonoBehaviour
 
         tiempodisparo += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.S) && tiempodisparo >= 0.5f)
+      /*  if (Input.GetKey(KeyCode.S) && tiempodisparo >= 0.5f)
         {
 
             if (Input.GetKey(KeyCode.UpArrow))
@@ -80,23 +80,23 @@ public class PersonajeControlador : MonoBehaviour
                 }
                 else
                 {*/
-                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 3f); ;
+                  //  Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                 //   Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 3f); ;
                 //}
                     
-            }
+          /*  }
             else
             {
                 Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
                 Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 3, 0f);
-            }
+            }*/
             
             
             
             
 
-            tiempodisparo = 0f;
-        }
+       /*     tiempodisparo = 0f;
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -112,7 +112,7 @@ public class PersonajeControlador : MonoBehaviour
                 DobleSaltar = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             Slash = true;
         }
