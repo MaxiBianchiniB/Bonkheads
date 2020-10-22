@@ -141,10 +141,18 @@ public class EnemigoControlador : MonoBehaviour
     { 
         
 
-        if (collision.gameObject.tag == "BalaPlayer")
+        if (collision.gameObject.tag == "Player")
         {
-            collision.SendMessage("EliminarBala");
-            Destroy(gameObject);
+            float yOffset = 0.4f;
+            if (transform.position.y + yOffset < collision.transform.position.y)
+            {
+                collision.SendMessage("EnemyJump");
+                Destroy(gameObject);
+            }else
+            {
+                collision.SendMessage("EnemyKnockBack", transform.position.x);
+            }
+            
         }
     }
 
