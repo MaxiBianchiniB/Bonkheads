@@ -7,10 +7,11 @@ public class LevelController : MonoBehaviour
 {
     string LevelName;
 
-    // Start is called before the first frame update
+    [System.Obsolete]
     void Start()
     {
         LevelName = Application.loadedLevelName;
+       // LevelName = SceneManager.;
     }
 
     // Update is called once per frame
