@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
+
 public class PersonajeControlador : MonoBehaviour
 {
     public float Speed;
@@ -54,6 +56,7 @@ public class PersonajeControlador : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
         anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
@@ -171,7 +174,13 @@ public class PersonajeControlador : MonoBehaviour
     }
     void OnBecameInvisible()
     {
-        transform.position = PosReinicio;
+        //transform.position = PosReinicio;
+
+        //si me caigo de la pantalla reinicio nivel
+
+        Destroy(gameObject);
+        Application.LoadLevel(1);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -185,14 +194,14 @@ public class PersonajeControlador : MonoBehaviour
             Vida--;
         }
 
-        if (collision.gameObject.tag == "Enemigo")
+       /* if (collision.gameObject.tag == "Enemigo")
         {
 
             Debug.Log("contacto enemigo;");
             EnemyKnockBack(collision.transform.position.x);
 
             Vida--;
-        }
+        }*/
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -236,6 +245,11 @@ public class PersonajeControlador : MonoBehaviour
             TocandoPiso = false;
             transform.parent = null;
         }
+    }
+
+    public void EnemyJump()
+    {
+        Saltar = true;
     }
 
     public void EnemyKnockBack(float enemyPosX)
