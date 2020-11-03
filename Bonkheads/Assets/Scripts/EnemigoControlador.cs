@@ -138,10 +138,17 @@ public class EnemigoControlador : MonoBehaviour
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
-    { 
-        
+    {
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "BalaPlayer")
+        {
+            collision.SendMessage("EliminarBala");
+            Destroy(gameObject);
+        }
+
+
+
+      /*  if (collision.gameObject.tag == "Player")
         {
             float yOffset = 0.4f;
             if (transform.position.y + yOffset < collision.transform.position.y)
@@ -153,7 +160,7 @@ public class EnemigoControlador : MonoBehaviour
                 collision.SendMessage("EnemyKnockBack", transform.position.x);
             }
             
-        }
+        }*/
     }
 
 }
