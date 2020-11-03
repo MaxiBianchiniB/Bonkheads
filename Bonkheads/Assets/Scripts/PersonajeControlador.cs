@@ -56,47 +56,47 @@ public class PersonajeControlador : MonoBehaviour
     }
 
     // Update is called once per frame
-    
+
     void Update()
     {
         anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
         anim.SetBool("Grounded", TocandoPiso);
 
-        tiempodisparo += Time.deltaTime;
+        //tiempodisparo += Time.deltaTime;
 
-      /*  if (Input.GetKey(KeyCode.S) && tiempodisparo >= 0.5f)
+        if (Input.GetKeyDown(KeyCode.S) /*&& tiempodisparo >= 0.5f*/)
         {
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-               /* if (Input.GetKey(KeyCode.A))
-                {
-                    Debug.Log("IZquierda");
-                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, 3f); ;
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    Debug.Log("derecha");
-                    Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                    Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(3f, 3f); ;
-                }
-                else
-                {*/
-                  //  Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                 //   Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 3f); ;
-                //}
-                    
-          /*  }
-            else
-            {
+                /* if (Input.GetKey(KeyCode.A))
+                 {
+                     Debug.Log("IZquierda");
+                     Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                     Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, 3f); ;
+                 }
+                 else if (Input.GetKey(KeyCode.D))
+                 {
+                     Debug.Log("derecha");
+                     Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+                     Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(3f, 3f); ;
+                 }
+                 else
+                }*/
                 Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
-                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 3, 0f);
-            }*/
-            
-            
-            
-            
+                Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 5 * MaxSpeed); ;
+            }
+
+        
+        
+        
+            Balas = Instantiate(Bala, puntoinstancia.position, Quaternion.identity);
+            Balas.GetComponent<Rigidbody2D>().velocity = new Vector2(Direccion * 5 * MaxSpeed, 0f);
+        }
+
+
+
+      
 
        /*     tiempodisparo = 0f;
         }*/
